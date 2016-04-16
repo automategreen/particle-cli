@@ -89,10 +89,10 @@ CloudCommand.prototype = extend(BaseCommand.prototype, {
 
 	usagesByName: {
 		nyan: [
-			'particle cloud nyan',
-			'particle cloud nyan my_device_id on',
-			'particle cloud nyan my_device_id off',
-			'particle cloud nyan all on'
+			'automategreen cloud nyan',
+			'automategreen cloud nyan my_device_id on',
+			'automategreen cloud nyan my_device_id off',
+			'automategreen cloud nyan all on'
 		]
 
 	},
@@ -450,7 +450,7 @@ CloudCommand.prototype = extend(BaseCommand.prototype, {
 		}
 
 		if (!deviceType) {
-			console.error('\nPlease specify the target device type. eg. particle compile photon xxx\n');
+			console.error('\nPlease specify the target device type. eg. automategreen compile photon xxx\n');
 			return -1;
 		}
 
@@ -467,8 +467,8 @@ CloudCommand.prototype = extend(BaseCommand.prototype, {
 			platform_id = PLATFORMS[deviceType];
 		} else {
 			console.error('\nTarget device ' + deviceType + ' is not valid');
-			console.error('	eg. particle compile core xxx');
-			console.error('	eg. particle compile photon xxx\n');
+			console.error('	eg. automategreen compile core xxx');
+			console.error('	eg. automategreen compile photon xxx\n');
 			return -1;
 		}
 

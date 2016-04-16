@@ -109,9 +109,9 @@ FlashCommand.prototype = extend(BaseCommand.prototype, {
 			return help.helpCommand(this.name);
 		}
 
-		//particle flash --usb some-firmware.bin
-		//particle flash --cloud core_name some-firmware.bin
-		//particle flash core_name some-firmware.bin
+		//automategreen flash --usb some-firmware.bin
+		//automategreen flash --cloud core_name some-firmware.bin
+		//automategreen flash core_name some-firmware.bin
 
 		this.checkArguments(arguments);
 

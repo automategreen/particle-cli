@@ -1,4 +1,4 @@
-lib-cov
+slib-cov
 *.seed
 *.log
 *.csv

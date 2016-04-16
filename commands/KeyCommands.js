@@ -405,7 +405,7 @@ KeyCommands.prototype = extend(BaseCommand.prototype, {
 		if (deviceid.length < 24) {
 			console.log('***************************************************************');
 			console.log('   Warning! - device id was shorter than 24 characters - did you use something other than an id?');
-			console.log('   use particle identify to find your device id');
+			console.log('   use automategreen identify to find your device id');
 			console.log('***************************************************************');
 		}
 

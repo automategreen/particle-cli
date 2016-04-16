@@ -371,7 +371,7 @@ WirelessCommand.prototype.setup = function setup(photon, cb) {
 				return getClaim();
 			}
 
-			if (network.indexOf('Photon-') === 0) {
+			if (network.indexOf('AG-') === 0) {
 				console.log(
 					chalk.bold.red('!'),
 					chalk.bold.white('You are still connected to your Photon\'s Wi-Fi network. Please reconnect to a Wi-Fi network with internet access.')
@@ -397,8 +397,19 @@ WirelessCommand.prototype.setup = function setup(photon, cb) {
 	}
 
 	function getClaim() {
-		self.newSpin('Obtaining magical secure claim code from the cloud...').start();
-		api.getClaimCode(undefined, next);
+		prompt([{
+			type: 'list',
+			name: 'productSlug',
+			message: 'What Automate Green product is being claimed?',
+			choices: [
+				{name: 'Hub Adapter IO (proto 1)', value: 'hub-adapter-io-v010'},
+				{name: 'Sensor Hub S6R3-WiFi (proto 2)', value: 'sensor-hub-s6r3-wifi-v100'}
+			],
+			default: 'sensor-hub-s6r3-wifi-v100',
+		}], function (ans) {
+			self.newSpin('Obtaining magical secure claim code from the cloud...').start();
+			api.getClaimCode(ans.productSlug, undefined, next);
+		});
 	}
 	function next(err, dat) {
 
@@ -414,7 +425,7 @@ WirelessCommand.prototype.setup = function setup(photon, cb) {
 				protip("Your computer couldn't find the cloud...");
 			} else {
 
-				protip('There was a network error while connecting to the cloud...');
+				protip('There was a network error while connecting to the cloud...' + err);
 			}
 			protip('We need an active internet connection to successfully complete setup.');
 			protip('Are you currently connected to the internet? Please double-check and try again.');

@@ -90,7 +90,7 @@ SerialCommand.prototype = extend(BaseCommand.prototype, {
 				// manufacturer value
 				// Mac - Spark devices
 				// Devices on old driver - Spark Core, Photon
-				// Devices on new driver - Particle IO (https://github.com/spark/firmware/pull/447)
+				// Devices on new driver - Automate Green IO (https://github.com/spark/firmware/pull/447)
 				// Windows only contains the pnpId field
 
 				var device;
@@ -118,7 +118,7 @@ SerialCommand.prototype = extend(BaseCommand.prototype, {
 					};
 				}
 
-				var matchesManufacturer = port.manufacturer && (port.manufacturer.indexOf('Particle') >= 0 || port.manufacturer.indexOf('Spark') >= 0 || port.manufacturer.indexOf('Photon') >= 0);
+				var matchesManufacturer = port.manufacturer && (port.manufacturer.indexOf('Automate Green') >= 0 || port.manufacturer.indexOf('Spark') >= 0 || port.manufacturer.indexOf('Photon') >= 0);
 				if (!device && matchesManufacturer) {
 					device = { port: port.comName, type: 'Core' };
 				}
@@ -786,7 +786,7 @@ SerialCommand.prototype = extend(BaseCommand.prototype, {
 			wifiDone.resolve();
 		});
 
-		st.addTrigger('Particle <3 you!', function() {
+		st.addTrigger('Automate Green <3 you!', function() {
 			resetTimeout();
 			wifiDone.resolve();
 		});

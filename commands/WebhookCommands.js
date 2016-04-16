@@ -74,8 +74,8 @@ WebhookCommand.prototype = extend(BaseCommand.prototype, {
 	description: 'Experimental Beta - helpers for reacting to device event streams',
 	usagesByName: {
 		'create': [
-			'particle webhook create hook.json',
-			'particle webhook create eventName url deviceID',
+			'automategreen webhook create hook.json',
+			'automategreen webhook create eventName url deviceID',
 			'',
 			'The url will receive a request with the event name and data whenever one of your devices ',
 			'publish an event starting with the provided name.  If you do optionally provide a json ',
@@ -110,7 +110,7 @@ WebhookCommand.prototype = extend(BaseCommand.prototype, {
 			return -1;
 		}
 
-		//Nothing was passed in except `particle webhook create`
+		//Nothing was passed in except `automategreen webhook create`
 		if (!eventName && !url && !deviceID && !requestType) {
 			var help = this.cli.getCommandModule('help');
 			return help.helpCommand(this.name, 'create');
@@ -118,7 +118,7 @@ WebhookCommand.prototype = extend(BaseCommand.prototype, {
 
 		//if they gave us one thing, and it happens to be a file, and we could parse it as json
 		var data = {};
-		//particle webhook create xxx.json
+		//automategreen webhook create xxx.json
 		if (eventName && !url && !deviceID) {
 			var filename = eventName;
 

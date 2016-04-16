@@ -115,7 +115,7 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 		}
 
 		//make a pretty string showing how to use this command, optionally plus a sub-command
-		var cmdLine = 'particle ' + name;
+		var cmdLine = 'automategreen ' + name;
 		if (subcmd) {
 			cmdLine += ' ' + subcmd;
 		}
@@ -148,7 +148,7 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 
 				lines = lines.concat(cmds.map(function (subcmdname) {
 					var subcmdObj = command[subcmdname];
-					var line = '   particle ' + name + ' ' + subcmdname;
+					var line = '   automategreen ' + name + ' ' + subcmdname;
 					return utilities.padRight(line, ' ', 25) + ' - ' + subcmdObj.does;
 				}));
 			} else if (command.optionsByName) {
@@ -156,7 +156,7 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 
 				for (var optionName in command.optionsByName) {
 					var desc = command.descriptionsByName[optionName];
-					var hline = '    particle ' + command.name + ' ' + optionName;
+					var hline = '    automategreen ' + command.name + ' ' + optionName;
 					hline = utilities.padRight(hline, ' ', 25) + ' - ' + desc;
 					lines.push(hline);
 				}
@@ -170,12 +170,12 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 
 	listCommandsTable: function () {
 		//console.log("help list commands command!");
-		console.log('Welcome to the Particle Command line utility!');
+		console.log('Welcome to the Automate Green Command line utility!');
 		console.log('Version', package_json.version);
 		console.log('');
 		console.log('The following commands are available:');
 
-		var appName = 'particle',
+		var appName = 'automategreen',
 			leftPad = 2,
 			rightPad = 20;
 
@@ -203,7 +203,7 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 	listMappedCommands: function () {
 		var lines = [
 			'',
-			'Welcome to the Particle Command line utility!',
+			'Welcome to the Automate Green Command line utility!',
 			'Version ' + package_json.version,
 			'https://github.com/spark/particle-cli',
 			''
@@ -223,7 +223,7 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 			var str = hogan.compile(template).render(node);
 			lines.push(str);
 		} else {
-			lines.push('Usage: particle <command_name> <arguments> ');
+			lines.push('Usage: automategreen <command_name> <arguments> ');
 			lines.push('Common Commands:');
 			lines.push('');
 
@@ -244,7 +244,7 @@ HelpCommand.prototype = extend(BaseCommand.prototype, {
 				lines.push('');
 			}
 
-			lines.push('For more information Run: particle help <command_name>');
+			lines.push('For more information Run: automategreen help <command_name>');
 			lines.push('');
 		}
 

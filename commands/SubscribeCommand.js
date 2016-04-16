@@ -57,7 +57,7 @@ SubscribeCommand.prototype = extend(BaseCommand.prototype, {
 			return -1;
 		}
 
-		// if they typed: "particle subscribe mine"
+		// if they typed: "automategreen subscribe mine"
 		if ((!deviceId || (deviceId === '')) && (eventName === 'mine')) {
 			eventName = null;
 			deviceId = 'mine';

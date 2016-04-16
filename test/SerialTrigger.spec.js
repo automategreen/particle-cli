@@ -52,7 +52,7 @@ describe('SerialTrigger', function() {
 		var port = new MockPort();
 		var st = new SerialTrigger(port);
 		port.on('drain', function() {
-			if (port.data !== 'particle') {
+			if (port.data !== 'automategreen') {
 				return done(new Error('Response data does not match'));
 			}
 			st.stop();
@@ -60,7 +60,7 @@ describe('SerialTrigger', function() {
 			done();
 		});
 		st.addTrigger('SSID: ', function(cb) {
-			cb('particle');
+			cb('automategreen');
 		});
 		st.start();
 		port.emit('data', 'SSID: ');

@@ -48,20 +48,20 @@ ConfigCommand.prototype = extend(BaseCommand.prototype, {
 
 	does: [
 		'The config command lets you create groups of settings. ',
-		'You can quickly switch to a profile by calling "particle config profile-name". ',
+		'You can quickly switch to a profile by calling "automategreen config profile-name". ',
 		'This is especially useful for switching to your local server ',
 		'or when switching between other environments.  ',
-		'Call "particle config particle" to switch back to the normal api server',
-		'Use "particle config identify" to see the currently selected configuration profile',
-		'Use "particle config list" to see the list of available profiles'
+		'Call "automategreen config automategreen" to switch back to the normal api server',
+		'Use "automategreen config identify" to see the currently selected configuration profile',
+		'Use "automategreen config list" to see the list of available profiles'
 	],
 	usage: [
-		'particle config local',
-		'particle config particle',
-		'particle config local apiUrl http://localhost:8080',
-		'particle config useSudoForDfu true',
-		'particle config list',
-		'particle config identify'
+		'automategreen config local',
+		'automategreen config automategreen',
+		'automategreen config local apiUrl http://localhost:8080',
+		'automategreen config useSudoForDfu true',
+		'automategreen config list',
+		'automategreen config identify'
 	],
 
 
@@ -91,9 +91,9 @@ ConfigCommand.prototype = extend(BaseCommand.prototype, {
 	},
 
 	switchGroup: function (group) {
-		//default group is particle
+		//default group is automategreen
 		if (!group) {
-			group = 'particle';
+			group = 'automategreen';
 		}
 
 		settings.switchProfile(group);
@@ -113,9 +113,9 @@ ConfigCommand.prototype = extend(BaseCommand.prototype, {
 	},
 
 	listConfigs: function() {
-		var particleDir = settings.ensureFolder();
+		var automategreenDir = settings.ensureFolder();
 		var files = utilities.globList(null, [
-			path.join(particleDir, '*.config.json')
+			path.join(automategreenDir, '*.config.json')
 		]);
 
 		if (files.length > 0) {

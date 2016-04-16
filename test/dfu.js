@@ -6,15 +6,15 @@ var path = require('path');
 var assert = require('assert');
 
 describe('DFU', function() {
-	it('finds Particle devices in dfu-util -l output', function() {
-		var output = fs.readFileSync(path.join(__dirname, './fixtures/dfu/only_particle.txt')).toString();
+	it('finds Automate Green devices in dfu-util -l output', function() {
+		var output = fs.readFileSync(path.join(__dirname, './fixtures/dfu/only_automategreen.txt')).toString();
 		var devices = dfu._deviceIdsFromDfuOutput(output);
 		assert.ok(devices);
 		assert.equal(devices.length, 1);
 		assert.equal(devices[0], '2b04:d006');
 	});
 
-	it('filters out non-Particle devices in dfu-util -l output', function() {
+	it('filters out non-Automate Green devices in dfu-util -l output', function() {
 		var output = fs.readFileSync(path.join(__dirname, './fixtures/dfu/mixed.txt')).toString();
 		var devices = dfu._deviceIdsFromDfuOutput(output);
 		assert.ok(devices);

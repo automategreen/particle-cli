@@ -50,7 +50,7 @@ var settings = {
 	MAX_FILE_SIZE: 1024 * 1024 * 2,
 
 	overridesFile: null,
-	wirelessSetupFilter: /^Photon-.*$/,
+	wirelessSetupFilter: /^AG-.*$/,
 
 	notSourceExtensions: [
 		'.ds_store',
@@ -65,8 +65,8 @@ var settings = {
 	],
 	showIncludedSourceFiles: true,
 
-	dirIncludeFilename: 'particle.include',
-	dirExcludeFilename: 'particle.ignore',
+	dirIncludeFilename: 'automategreen.include',
+	dirExcludeFilename: 'automategreen.ignore',
 
 	knownApps: {
 		'deep_update_2014_06': true,
@@ -81,7 +81,9 @@ var settings = {
 		8: 'P1',
 		10: 'Electron',
 		88: 'Duo',
-		103: 'Bluz'
+		103: 'Bluz',
+		341: 'Hub Adapter IO',
+		443: 'Sensor Hub S6R3'
 	},
 	updates: {
 		'2b04:d006': {
@@ -130,22 +132,22 @@ settings.findHomePath = function() {
 };
 
 settings.ensureFolder = function() {
-	var particleDir = path.join(settings.findHomePath(), '.particle');
-	if (!fs.existsSync(particleDir)) {
-		fs.mkdirSync(particleDir);
+	var automategreenDir = path.join(settings.findHomePath(), '.automategreen');
+	if (!fs.existsSync(automategreenDir)) {
+		fs.mkdirSync(automategreenDir);
 	}
-	return particleDir;
+	return automategreenDir;
 };
 
 settings.findOverridesFile = function(profile) {
-	profile = profile || settings.profile || 'particle';
+	profile = profile || settings.profile || 'automategreen';
 
-	var particleDir = settings.ensureFolder();
-	return path.join(particleDir, profile + '.config.json');
+	var automategreenDir = settings.ensureFolder();
+	return path.join(automategreenDir, profile + '.config.json');
 };
 
 settings.loadOverrides = function (profile) {
-	profile = profile || settings.profile || 'particle';
+	profile = profile || settings.profile || 'automategreen';
 
 	try {
 		var filename = settings.findOverridesFile(profile);
@@ -160,7 +162,7 @@ settings.loadOverrides = function (profile) {
 };
 
 settings.whichProfile = function() {
-	settings.profile = 'particle';
+	settings.profile = 'automategreen';
 	settings.readProfileData();
 };
 
@@ -177,22 +179,22 @@ settings.switchProfile = function(profileName) {
 };
 
 settings.readProfileData = function() {
-	var particleDir = settings.ensureFolder();
-	var proFile = path.join(particleDir, 'profile.json');      //proFile, get it?
+	var automategreenDir = settings.ensureFolder();
+	var proFile = path.join(automategreenDir, 'profile.json');      //proFile, get it?
 	if (fs.existsSync(proFile)) {
 		var data = JSON.parse(fs.readFileSync(proFile));
 
-		settings.profile = (data) ? data.name : 'particle';
+		settings.profile = (data) ? data.name : 'automategreen';
 		settings.profile_json = data;
 	} else {
-		settings.profile = 'particle';
+		settings.profile = 'automategreen';
 		settings.profile_json = {};
 	}
 };
 
 settings.saveProfileData = function() {
-	var particleDir = settings.ensureFolder();
-	var proFile = path.join(particleDir, 'profile.json');      //proFile, get it?
+	var automategreenDir = settings.ensureFolder();
+	var proFile = path.join(automategreenDir, 'profile.json');      //proFile, get it?
 	fs.writeFileSync(proFile, JSON.stringify(settings.profile_json, null, 2), { mode: '600' });
 };
 
@@ -243,49 +245,6 @@ settings.override = function (profile, key, value) {
 	}
 };
 
-settings.transitionSparkProfiles = function() {
-	var sparkDir = path.join(settings.findHomePath(), '.spark');
-	var particleDir = path.join(settings.findHomePath(), '.particle');
-	if (fs.existsSync(sparkDir) && !fs.existsSync(particleDir)) {
-		fs.mkdirSync(particleDir);
-
-		console.log();
-		console.log(chalk.yellow('!!!'), 'I detected a Spark profile directory, and will now migrate your settings.');
-		console.log(chalk.yellow('!!!'), 'This will only happen once, since you previously used our Spark-CLI tools.');
-		console.log();
-
-		var files = fs.readdirSync(sparkDir);
-		files.forEach(function (filename) {
-			var data = fs.readFileSync(path.join(sparkDir, filename));
-			var jsonData;
-			try {
-				jsonData = JSON.parse(data);
-			} catch (ex) {
-				// invalid JSON, don't transition
-				return;
-			}
-
-			if (filename === 'profile.json') {
-				if (jsonData.name === 'spark') {
-					jsonData.name = 'particle';
-				}
-			}
-
-			if (filename === 'spark.config.json') {
-				filename = 'particle.config.json';
-			}
-
-			if (jsonData.apiUrl && jsonData.apiUrl.indexOf('.spark.io') > 0) {
-				jsonData.apiUrl = jsonData.apiUrl.replace('.spark.io', '.particle.io');
-			}
-
-			data = JSON.stringify(jsonData, null, 2);
-			fs.writeFileSync(path.join(particleDir, filename), data, { mode: '600' });
-		});
-	}
-};
-
-settings.transitionSparkProfiles();
 settings.whichProfile();
 settings.loadOverrides();
 

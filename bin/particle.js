@@ -10,8 +10,8 @@ var cli = new Interpreter();
 if(path.basename(process.argv[1]) == "spark") {
 	console.log();
 	console.log(chalk.yellow('!'), "You're using the", chalk.cyan('spark'), "command, which has been deprecated.");
-	console.log(chalk.yellow('!'), "Please use the", chalk.cyan('particle'), "command instead, or suggest an alternative name!");
-	console.log(chalk.yellow('!'), "Check out our blog post for more info:", chalk.cyan("http://blog.particle.io/2015/05/13/spark-is-now-particle/"));
+	console.log(chalk.yellow('!'), "Please use the", chalk.cyan('automategreen'), "command instead, or suggest an alternative name!");
+	console.log(chalk.yellow('!'), "Check out our blog post for more info:", chalk.cyan("http://blog.particle.io/2015/05/13/spark-is-now-automategreen/"));
 	console.log();
 }
 
