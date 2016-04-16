@@ -1,6 +1,6 @@
 # Automate Green CLI
 
-**This is modified version of the Particle CLI.  It has been modified to work with Particle based Automate Green devices.  A simple Find and Replace was preformed on his README to updated the names, so it may not be correct.**
+**Automate Green CLI is a modified version of the Particle CLI.  It has been modified to work with Particle-based Automate Green devices.  A simple Find and Replace was performed to updated the names, so the README may not be correct.**
 
 The Automate Green CLI is a powerful tool for interacting with your devices and the Automate Green Cloud.  The CLI uses [node.js](http://nodejs.org/) and can run on Windows, Mac OS X, and Linux fairly easily.  It's also [open source](https://github.com/automategreen/automategreen-cli) so you can edit and change it, and even send in your changes as [pull requests](https://help.github.com/articles/using-pull-requests) if you want to share!
 

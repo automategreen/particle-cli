@@ -1,7 +1,7 @@
 {
   "name": "automategreen-cli",
-  "description": "Simple Node commandline application for working with your Automate Green devices and using the Particle Cloud",
-  "version": "0.4.0",
+  "description": "Simple Node commandline application for working with your Particle-based Automate Green devices",
+  "version": "0.4.1",
   "author": "Brandon Goode",
   "repository": {
     "type": "git",
